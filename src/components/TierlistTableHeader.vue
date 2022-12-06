@@ -1,10 +1,17 @@
 <template>
   <thead>
     <tr>
-      <td class="col-rating">
+      <td class="col-tier">
         <button>Settings</button>
       </td>
       <td class="col-subject"></td>
+      <td
+        v-for="(criteria, i) in $store.state.criterias"
+        :key="`criteria-${i}`"
+        class="col-ratings" 
+      >
+        {{ criteria }}
+      </td>
       <td class="col-add-col">
         <button id="btn-add-col">+</button>
       </td>

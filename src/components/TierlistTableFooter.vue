@@ -5,8 +5,6 @@
       <td>
         <button id="btn-add-row">+</button>
       </td>
-      <td></td>
-      <td></td>
     </tr>
   </tfoot>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Tier list</h1>
+    <h1>{{ $store.state.tierListName }}</h1>
     <TierlistTable />
   </div>
 </template>
