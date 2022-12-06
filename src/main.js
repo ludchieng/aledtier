@@ -23,9 +23,24 @@ const store = createStore({
         ratings: [
           [4, 8], [7, 2], [11, 11],
         ],
-      }]
+      }],
     }
   },
+  mutations: {
+    addCriteria(state) {
+      state.criterias = [...state.criterias, ""]
+      state.subjects = state.subjects.map((subject) => (
+        {...subject, ratings: [...subject.ratings, []]}
+      ))
+    },
+    addSubject(state) {
+      state.subjects = [...state.subjects, {
+        label: '',
+        image: '',
+        ratings: Array.from({length: state.criterias.length}).map(() => []),
+      }]
+    },
+  }
 })
 
 const app = createApp(App)

@@ -8,12 +8,12 @@
       <td
         v-for="(criteria, i) in $store.state.criterias"
         :key="`criteria-${i}`"
-        class="col-ratings" 
+        class="col-ratings"
       >
         {{ criteria }}
       </td>
-      <td class="col-add-col">
-        <button id="btn-add-col">+</button>
+      <td class="col-add-criteria">
+        <button id="btn-add-criteria" @click="addCriteria">+</button>
       </td>
       <td class="col-scoring">/10</td>
     </tr>
@@ -23,6 +23,11 @@
 <script>
 export default {
   name: 'TierlistTableHeader',
+  methods: {
+    addCriteria() {
+      this.$store.commit('addCriteria')
+    }
+  }
 }
 </script>
 
@@ -31,7 +36,7 @@ export default {
   width: 3rem;
 }
 
-.col-add-col {
+.col-add-criteria {
   width: 1rem;
   padding: 0
 }

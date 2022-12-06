@@ -4,11 +4,11 @@
       <td></td>
       <td>{{ subject.label }}</td>
       <td v-for="(rating, j) in subject.ratings" :key="`row-${i}-${$store.state.criterias[j]}`">
-        {{ average(rating).toFixed(1) }}
+        {{ rating.length === 0 ? null : average(rating).toFixed(1) }}
       </td>
       <td></td>
       <td>
-        {{ totalAverage(subject.ratings).toFixed(1) }}
+        {{ isNaN(totalAverage(subject.ratings)) ? null : totalAverage(subject.ratings).toFixed(1) }}
       </td>
     </tr>
   </tbody>

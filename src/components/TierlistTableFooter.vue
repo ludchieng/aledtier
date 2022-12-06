@@ -3,7 +3,7 @@
     <tr>
       <td></td>
       <td>
-        <button id="btn-add-row">+</button>
+        <button id="btn-add-row" @click="addSubject">+</button>
       </td>
     </tr>
   </tfoot>
@@ -12,6 +12,11 @@
 <script>
 export default {
   name: 'TierlistTableFooter',
+  methods: {
+    addSubject() {
+      this.$store.commit('addSubject')
+    }
+  }
 }
 </script>
 
