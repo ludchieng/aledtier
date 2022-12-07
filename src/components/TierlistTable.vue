@@ -25,11 +25,10 @@ export default {
 <style>
 table {
   width: 100%;
-  border-collapse: collapse;
 }
+
 td {
   border: 1px solid #555;
-  padding: 0.5rem 0.75rem;
   text-align: center;
 }
 

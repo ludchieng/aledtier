@@ -10,7 +10,12 @@
         :key="`criteria-${i}`"
         class="col-ratings"
       >
-        {{ criteria }}
+        <EditableCell
+          isClosable
+          :label="criteria"
+          @close="deleteCriteria(i)"
+          @blur="(label) => setCriteria(i, label)"
+        />
       </td>
       <td class="col-add-criteria">
         <button id="btn-add-criteria" @click="addCriteria">+</button>
@@ -21,12 +26,23 @@
 </template>
 
 <script>
+import EditableCell from './EditableCell.vue'
+
 export default {
   name: 'TierlistTableHeader',
+  components: {
+    EditableCell,
+  },
   methods: {
     addCriteria() {
       this.$store.commit('addCriteria')
-    }
+    },
+    setCriteria(index, label) {
+      this.$store.commit('setCriteria', {index, label})
+    },
+    deleteCriteria(index) {
+      this.$store.commit('deleteCriteria', index)
+    },
   }
 }
 </script>
@@ -34,6 +50,10 @@ export default {
 <style scoped>
 .col-scoring {
   width: 3rem;
+}
+
+.col-ratings {
+  min-width: 1em;
 }
 
 .col-add-criteria {

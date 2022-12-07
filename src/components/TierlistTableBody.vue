@@ -2,7 +2,16 @@
   <tbody>
     <tr v-for="(subject, i) in $store.state.subjects" :key="`row-${i}`">
       <td></td>
-      <td>{{ subject.label }}</td>
+      <td>
+        <EditableCell
+          isClosable
+          :label="subject.label"
+          @close="deleteSubject(i)"
+          @blur="(label) => setSubjectLabel(i, label)"
+        >
+          !
+        </EditableCell>
+      </td>
       <td v-for="(rating, j) in subject.ratings" :key="`row-${i}-${$store.state.criterias[j]}`">
         {{ rating.length === 0 ? null : average(rating).toFixed(1) }}
       </td>
@@ -15,8 +24,13 @@
 </template>
 
 <script>
+import EditableCell from './EditableCell.vue'
+
 export default {
   name: 'TierlistTableBody',
+  components: {
+    EditableCell,
+  },
   methods: {
     average(rating) {
       return rating.reduce((acc, rating) => acc + rating, 0) / rating.length
@@ -24,10 +38,15 @@ export default {
     totalAverage(ratings) {
       return ratings.reduce((acc, rating) => acc + this.average(rating), 0) / ratings.length
     },
+    setSubjectLabel(index, label) {
+      this.$store.commit('setSubjectLabel', {index, label})
+    },
+    deleteSubject(index) {
+      this.$store.commit('deleteSubject', index)
+    },
   }
 }
 </script>
 
 <style scoped>
-
 </style>

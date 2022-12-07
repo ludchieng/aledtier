@@ -15,7 +15,7 @@ export default {
 
 <style>
 #app {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
@@ -23,5 +23,16 @@ export default {
 
 body {
   background-color: #1b1b1b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus,
+textarea:focus {
+  outline: 2px solid #3586FF;
+  background-color: #3586FF22;
+  transition: 70ms;
 }
 </style>
