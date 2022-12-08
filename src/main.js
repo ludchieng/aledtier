@@ -59,6 +59,33 @@ const store = createStore({
     deleteSubject(state, index) {
       state.subjects.splice(index, 1)
     },
+    setRatingNotation(state, {subjectIndex, criteriaIndex, ratingNotationIndex, value}) {
+      state.subjects[subjectIndex].ratings[criteriaIndex][ratingNotationIndex] = value
+    },
+    addRatingNotation(state, {subjectIndex, criteriaIndex}) {
+      const ratingsArr = state.subjects[subjectIndex].ratings[criteriaIndex]
+      let numberToPush;
+      // immonde mais flemme, ça va pas scale de tte façon
+      if (ratingsArr.length === 0) {
+        numberToPush = criteriaIndex === 0
+          ? subjectIndex === 0
+            ? 1
+            : state.subjects[subjectIndex-1].ratings.length > 0
+              ? Math.max(1, state.subjects[subjectIndex-1].ratings[state.subjects[subjectIndex-1].ratings.length-1].length)
+              : 1
+          : Math.max(1, state.subjects[subjectIndex].ratings[criteriaIndex-1].length)
+      } else {
+        numberToPush = 1
+      }
+      for (let i = 0; i < numberToPush; i++) {
+        ratingsArr.push(null)
+      }
+    },
+    deleteRatingNotation(state, {subjectIndex, criteriaIndex}) {
+      const ratingsArr = state.subjects[subjectIndex].ratings[criteriaIndex]
+      const lastIndex = ratingsArr.length - 1
+      ratingsArr.splice(lastIndex, 1)
+    },
   }
 })
 
